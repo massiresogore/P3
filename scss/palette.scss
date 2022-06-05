@@ -1,0 +1,276 @@
+@use "normalize";
+@import "mixin";
+@import "variable";
+@import "function";
+
+// importation de la typographie
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Shrikhand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&family=Roboto:wght@400;700;900&display=swap');
+
+body{
+   /* font-family: $text-font; */
+}
+//*****************PAge1**************
+
+li{
+    list-style: none;
+}
+// logo
+header{
+    
+    nav{
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        .logo{
+            font-family: $logTitre-font;
+        }
+        h1{
+            margin-bottom: 0;
+        }
+    }
+    .fa-arrow-left{
+        position: absolute;
+        left: 0;
+        top: 5px;
+    }
+    .fa-arrow-left:hover{
+        color: darken($primary-color, 50%);
+    }
+}
+// Insertion de l'image
+
+.image{
+    position: relative;
+    top: 2rem;
+    width: 100%;
+    height: 14rem ;
+    background: url(../images/restaurants/jay-wennington-N_Y88TWmGwA-unsplash.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.bloc-menu{
+    max-width: 80%;
+    margin: 0 auto;
+}
+.main-bloc{
+    max-width: 100%;
+    background-color: #fafafa;
+    position: relative;
+    border-radius: unitize(40);
+    padding-bottom:5rem ;
+    h2{
+        margin: 0;
+        font-family: $logTitre-font;
+        font-size: 1.4rem;
+    }
+
+}
+// titre
+
+.title{
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+// Réglage de coeur
+
+.solid-heart, .regular-heart{
+    font-size: 2rem;
+}
+.heart{
+   cursor: pointer;
+    .regular-heart{
+        position: relative;
+        opacity: 0.5;
+        
+    }
+    .solid-heart{
+        position: absolute;
+        background-image: linear-gradient(to top, $primary-color, $secondary-color);
+        -webkit-background-clip: text;
+        color: transparent;
+        opacity: 0;
+        transition: .7s;
+    }
+}
+.heart:hover .solid-heart{
+    opacity: 1;
+}
+
+/* *************************filtre des Menus***************** */
+.filtre{
+    margin-bottom: 50px;
+}
+.filtre h3{
+    border-bottom: .2rem solid #99e2d0;
+    padding-bottom: .3rem;
+    width: 3rem;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 400;
+    
+}
+
+@media screen and (min-width:850px) {
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+
+.filtres-grid{
+    display: grid;
+    gap: 15px;
+}
+
+.bloc-menus{
+    cursor: pointer;
+    box-shadow: 0.25rem 0.25rem 1rem rgb(0 0 0 / 10%);
+    border-radius: 1rem;
+    display: flex;
+    height: 4rem;
+    width: auto;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+
+//reglage de page et h4
+
+.menus h4, p {
+    margin: .5rem 0 .5rem .5rem;
+    opacity: 0.9;
+}
+// regladu de la position du prix
+div.price{
+    margin-left: auto;
+    margin-top: 33px;
+    padding-right: 30px;
+    font-weight: bold;
+}
+
+//reglage de checked
+div.checked{
+    background-color: #99e2d0;
+    width: 4rem;
+    border-radius: 0 1rem 1rem 0;
+    display: grid;
+    place-items: center;
+    margin-right:-4rem ;
+    transition: .5s ;
+    .fa-check{
+        background-color: #FFF;
+        width: 1.7rem;
+        height: 1.7rem;
+        border-radius: 50%;
+        color: darken(#99e2d0, 10%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: rotate(90deg);
+        transition: .5s;
+    }
+}
+
+// effet over de la classe checked
+div.bloc-filtre:hover div.checked{
+    margin-right: 0;
+}
+
+//effet over de check
+div.bloc-filtre:hover .fa-check{
+    transform: rotate(360deg);
+}
+
+// reglage de l'ajustement (...) lors de la compression du site
+.menus, .menus__title, .menus__paragraphe{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ************************* Amination de filtres ***************** */
+
+.filtre-1{
+    animation-name: animate;
+    animation-duration:.5s ;
+    animation-timing-function:cubic-bezier(.41,.23,.6,.81);
+}
+.filtre-2{
+    animation-name: animate;
+    animation-duration:.7s ;
+    animation-timing-function:cubic-bezier(.41,.23,.6,.81);
+}
+.filtre-3{
+    animation-name: animate;
+    animation-duration:.9s ;
+    animation-timing-function:cubic-bezier(.41,.23,.6,.81);
+}
+
+@keyframes animate{
+    0%{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+/* **************** Reglage du bouton ******************* */
+.search{
+   
+    border: none;
+    text-align: center;
+    
+  &__btn{
+    background-image: linear-gradient(to top, $primary-color, $secondary-color);
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.57);
+    border: none;
+    height: 60px;
+    border-radius: unitize(30);
+    color: #FFF;
+    padding: 0 20px;
+    font-size: 1.2rem;
+    transition: .5s;
+    width: 200px;
+    &:hover{
+        opacity: 0.9;
+        transform: scale(1.05);
+    }
+  }
+}
+
+
+/* **************** Footer ******************* */
+
+.footer{
+    position: relative;
+    font-size: 1.3rem;
+    background: #353535;
+    padding-top: 2rem;
+    &__lists{
+        margin: 0;
+    }
+    &__list{
+        list-style: none;
+        margin-top: 1.3rem;
+    }
+    &__lien{
+        text-decoration: none;
+        color: #FFF;
+    }
+}
+.titre-footer{
+    font-family: 'Shrikhand', sans-serif;
+    font-size: 2rem;
+    position: relative;
+    left: 2.3rem;
+    
+}
